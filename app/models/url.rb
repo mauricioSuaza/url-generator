@@ -4,6 +4,7 @@ class Url < ApplicationRecord
 
   before_validation :format_url
   after_validation :generate_shortened, on: :create
+  after_create :set_title
 
   validates :original, presence: true, 
     uniqueness: true, format: {with: URL_REGREX}
@@ -28,6 +29,10 @@ class Url < ApplicationRecord
   end
 
   private 
+    def set_title
+      UrlTitleUpdateWorker.perform_async(self.id)
+    end
+
     def generate_shortened
       begin 
         self.shortened =  Array.new(6) {random_sample}.join
