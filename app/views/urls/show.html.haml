@@ -2,7 +2,7 @@
   .card-body
     %h5.card-title 
       = "Your link to: " + @url.title.to_s
-    %input.url-inputt#shortenedUrl{:value => @shortened_url, :style => "width: 80%;"}
+    %input.url-inputt#shortenedUrl{:value => complete_path(@url), :style => "width: 80%;"}
   %ul.list-group.list-group-flush
     %li.list-group-item 
       = @url.original
