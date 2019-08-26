@@ -1,0 +1,12 @@
+.card{:style => "width: 18rem;"}
+  .card-body
+    %h5.card-title 
+      = "Your link to: " + @url.title.to_s
+  %ul.list-group.list-group-flush
+    %li.list-group-item 
+      = request.base_url + "/" +  @url.shortened 
+    %li.list-group-item 
+      = @url.original
+  .card-body
+    %button.btn.btn-primary{:onclick => "myFunction()"} Copy Link
+    =link_to("Go Back", root_path, {class: "card-link"})
