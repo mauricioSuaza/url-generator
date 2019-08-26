@@ -1,24 +1,25 @@
-# README
+# ROR Short URL Generator
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+> RoR application that generates short urls for easy sharing. 
 
-Things you may want to cover:
+### Setup
 
-* Ruby version
+> Install Ruby 2.5.3 with your prefered version manager
 
-* System dependencies
+```shell
+bundle install
 
-* Configuration
+rake db:create
+rake db:migrate
 
-* Database creation
+bundle exec sidekiq
 
-* Database initialization
+rails s 
+```
 
-* How to run the test suite
+## How does it generates the code?
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+It generates a unique 6 digits alphanumeric code taking 
+samples from array that contains all digits, and all 
+downcase and upcase letters. Then when the user searches 
+for this code is redirected to the original url. 
