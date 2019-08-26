@@ -4,6 +4,6 @@ Rails.application.routes.draw do
 
   resources :urls, only: [:show, :index, :create]
 
-  get '/:shortened_url', to: 'urls#redirect', as: 'redirect'
-  get '/not_found', to: 'urls#not_found'
+  get '/:shortened_url', to: 'urls#redirect', as: 'manage_redirect'
+  get 'urls/not_found', to: 'urls#not_found'
 end

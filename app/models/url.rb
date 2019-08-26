@@ -4,10 +4,11 @@ class Url < ApplicationRecord
 
   before_validation :format_url
   after_validation :generate_shortened, on: :create
-  after_create :increment_count
 
   validates :original, presence: true, 
     uniqueness: true, format: {with: URL_REGREX}
+
+  scope :top_hundred, ->() { order('count desc')}
 
   def self.search(code)
     return unless url = Url.find_by(shortened: code)
@@ -17,8 +18,8 @@ class Url < ApplicationRecord
   def self.find_or_instantiate(requested_url)
     url = Url.new(original: requested_url) 
     old_url = Url.find_by(original: url.send(:format_url))
-
-    return old_url.increment_count if old_url 
+    
+    return old_url if old_url 
     url 
   end
 

@@ -1,7 +1,7 @@
 class UrlsController < ApplicationController
   def index
     @url = Url.new
-    @urls = Url.all
+    @urls = Url.top_hundred
   end
 
   def create
