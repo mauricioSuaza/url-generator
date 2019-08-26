@@ -9,7 +9,7 @@ class Url < ApplicationRecord
   validates :original, presence: true, 
     uniqueness: true, format: {with: URL_REGREX}
 
-  scope :top_hundred, ->() { order('count desc')}
+  scope :top_hundred, ->() { order('count desc').limit(100)}
 
   def self.search(code)
     return unless url = Url.find_by(shortened: code)
