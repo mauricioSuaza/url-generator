@@ -17,6 +17,7 @@ class UrlsController < ApplicationController
 
   def show
     @url = Url.find(params[:id])
+    @shortened_url = request.base_url + "/" +  @url.shortened
   end
 
   private
