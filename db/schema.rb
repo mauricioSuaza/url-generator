@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20190825224227) do
     t.string "original"
     t.string "shortened"
     t.string "title"
-    t.string "count", default: "0"
+    t.integer "count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
