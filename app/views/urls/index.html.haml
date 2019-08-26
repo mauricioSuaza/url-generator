@@ -1,0 +1,28 @@
+.row.center-element
+  .col-md-8
+    = form_for(@url) do |f|
+      .form-group
+        %h2 Enter your url
+        = f.text_field :original, class: "form-control"
+      .form-group
+        = f.submit 'Create', class: "btn btn-success"
+.container.text-center.mt-5
+  %h2 TOP
+  %table.table.table-striped.table-dark
+    %thead
+      %tr
+        %th Title
+        %th Url
+        %th Shortened url
+        %th Count
+    %tbody
+      - @urls.each do |url|
+        %tr
+          %th
+            = url.title
+          %th
+            = request.base_url + "/" + url.shortened
+          %th
+            = url.original
+          %td
+            = url.count
